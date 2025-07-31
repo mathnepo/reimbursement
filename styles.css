@@ -1,0 +1,464 @@
+/* EMS Reimbursement API Partner Manual Styles - Powerverse Brand */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "First_Neue_normal";
+    src: url("https://powerverse.com/wp-content/uploads/TT_Firs_Neue_Normal.woff") format("woff"),
+         url("https://powerverse.com/wp-content/uploads/TT-Firs-Neue-Normal.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "First_Neue_bold";
+    src: url("https://powerverse.com/wp-content/uploads/TT_Firs_Neue_ExtraBold.woff") format("woff"),
+         url("https://powerverse.com/wp-content/uploads/TT-Firs-Neue-ExtraBold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: "First_Neue_normal", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    min-height: 100vh;
+}
+
+.header {
+    background: linear-gradient(135deg, #c761d6 0%, #ff8aa8 25%, #368aff 75%, #6b26f2 100%);
+    color: white;
+    padding: 2rem 3rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.content {
+    padding: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50;
+    margin: 2rem 0 1rem 0;
+    font-weight: 600;
+    font-family: "First_Neue_bold", "First_Neue_normal", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+h1 {
+    font-size: 2.2rem;
+    border-bottom: 3px solid #6B26F2;
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.3rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #495057;
+}
+
+p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+code {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #e83e8c;
+}
+
+code.inline {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #e83e8c;
+}
+
+/* Ensure code inside pre blocks doesn't get inline styling */
+pre code {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: inherit !important;
+}
+
+pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    color: #333;
+}
+
+blockquote {
+    border-left: 4px solid #667eea;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* API Endpoint Styling */
+.endpoint {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.endpoint h3 {
+    margin-top: 0;
+    color: #6B26F2;
+    font-weight: 600;
+}
+
+.method {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+}
+
+.method.get { background-color: #28a745; color: white; }
+.method.post { background-color: #007bff; color: white; }
+.method.put { background-color: #ffc107; color: #212529; }
+.method.patch { background-color: #17a2b8; color: white; }
+.method.delete { background-color: #dc3545; color: white; }
+
+/* Improve heading styling for better navigation */
+h2, h3, h4 {
+    scroll-margin-top: 100px; /* Account for sticky nav */
+}
+
+/* Better list styling */
+ul li, ol li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Improve strong/bold text */
+strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Code blocks with syntax highlighting - All dark theme */
+.json, pre.json, pre[class*="language-json"] {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+.bash, pre.bash, pre[class*="language-bash"] {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Handle all language-specific code blocks */
+pre[class*="language-"] {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Ensure all pre elements have relative positioning for copy buttons */
+pre {
+    position: relative !important;
+}
+
+/* Copy button styling */
+.copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #6B26F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s ease;
+    font-family: "First_Neue_normal", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.copy-btn:hover {
+    opacity: 1;
+    background: #5a4fd8;
+}
+
+.copy-btn.copied {
+    background: #28a745;
+}
+
+/* Better JSON formatting */
+pre code.language-json {
+    color: #333;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    line-height: 1.4;
+}
+
+
+
+/* Better JSON syntax highlighting */
+pre code.language-json {
+    color: #e2e8f0;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* JSON syntax colors for dark theme */
+pre code.language-json .string { color: #68d391; }
+pre code.language-json .number { color: #63b3ed; }
+pre code.language-json .boolean { color: #63b3ed; }
+pre code.language-json .null { color: #f687b3; }
+
+/* Better spacing for JSON blocks */
+pre.json, pre[class*="language-json"] {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+/* Improve code block readability - remove duplicate styling */
+pre code {
+    font-size: inherit;
+    line-height: inherit;
+    display: block;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+th {
+    background-color: #667eea;
+    color: white;
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Alert boxes */
+.alert {
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border-left: 4px solid;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+    color: #0c5460;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+/* Navigation */
+.nav {
+    background: #29293d;
+    padding: 1rem 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: #6B26F2;
+}
+
+/* Footer */
+.footer {
+    background: #29293d;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.footer p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .header {
+        padding: 1.5rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .content {
+        padding: 1.5rem;
+    }
+
+    .nav {
+        padding: 1rem;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    pre, .json, .bash {
+        font-size: 0.8em;
+    }
+}
+
+/* Print styles */
+@media print {
+    .nav {
+        display: none;
+    }
+
+    .container {
+        box-shadow: none;
+    }
+
+    .header {
+        background: white !important;
+        color: black !important;
+    }
+}

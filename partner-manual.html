@@ -1,0 +1,896 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reimbursement Service - Partner Manual</title>
+    <style>/* EMS Reimbursement API Partner Manual Styles - Powerverse Brand */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "First_Neue_normal";
+    src: url("https://powerverse.com/wp-content/uploads/TT_Firs_Neue_Normal.woff") format("woff"),
+         url("https://powerverse.com/wp-content/uploads/TT-Firs-Neue-Normal.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "First_Neue_bold";
+    src: url("https://powerverse.com/wp-content/uploads/TT_Firs_Neue_ExtraBold.woff") format("woff"),
+         url("https://powerverse.com/wp-content/uploads/TT-Firs-Neue-ExtraBold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: "First_Neue_normal", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    min-height: 100vh;
+}
+
+.header {
+    background: linear-gradient(135deg, #c761d6 0%, #ff8aa8 25%, #368aff 75%, #6b26f2 100%);
+    color: white;
+    padding: 2rem 3rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.content {
+    padding: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50;
+    margin: 2rem 0 1rem 0;
+    font-weight: 600;
+    font-family: "First_Neue_bold", "First_Neue_normal", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+h1 {
+    font-size: 2.2rem;
+    border-bottom: 3px solid #6B26F2;
+    padding-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.3rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #495057;
+}
+
+p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+code {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #e83e8c;
+}
+
+code.inline {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #e83e8c;
+}
+
+/* Ensure code inside pre blocks doesn't get inline styling */
+pre code {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    color: inherit !important;
+}
+
+pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    color: #333;
+}
+
+blockquote {
+    border-left: 4px solid #667eea;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* API Endpoint Styling */
+.endpoint {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.endpoint h3 {
+    margin-top: 0;
+    color: #6B26F2;
+    font-weight: 600;
+}
+
+.method {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+}
+
+.method.get { background-color: #28a745; color: white; }
+.method.post { background-color: #007bff; color: white; }
+.method.put { background-color: #ffc107; color: #212529; }
+.method.patch { background-color: #17a2b8; color: white; }
+.method.delete { background-color: #dc3545; color: white; }
+
+/* Improve heading styling for better navigation */
+h2, h3, h4 {
+    scroll-margin-top: 100px; /* Account for sticky nav */
+}
+
+/* Better list styling */
+ul li, ol li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Improve strong/bold text */
+strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Code blocks with syntax highlighting - All dark theme */
+.json, pre.json, pre[class*="language-json"] {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+.bash, pre.bash, pre[class*="language-bash"] {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Handle all language-specific code blocks */
+pre[class*="language-"] {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Ensure all pre elements have relative positioning for copy buttons */
+pre {
+    position: relative !important;
+}
+
+/* Copy button styling */
+.copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #6B26F2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.3s ease;
+    font-family: "First_Neue_normal", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.copy-btn:hover {
+    opacity: 1;
+    background: #5a4fd8;
+}
+
+.copy-btn.copied {
+    background: #28a745;
+}
+
+/* Better JSON formatting */
+pre code.language-json {
+    color: #333;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    line-height: 1.4;
+}
+
+
+
+/* Better JSON syntax highlighting */
+pre code.language-json {
+    color: #e2e8f0;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+/* JSON syntax colors for dark theme */
+pre code.language-json .string { color: #68d391; }
+pre code.language-json .number { color: #63b3ed; }
+pre code.language-json .boolean { color: #63b3ed; }
+pre code.language-json .null { color: #f687b3; }
+
+/* Better spacing for JSON blocks */
+pre.json, pre[class*="language-json"] {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+/* Improve code block readability - remove duplicate styling */
+pre code {
+    font-size: inherit;
+    line-height: inherit;
+    display: block;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+
+th {
+    background-color: #667eea;
+    color: white;
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Alert boxes */
+.alert {
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border-left: 4px solid;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+    color: #0c5460;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+/* Navigation */
+.nav {
+    background: #29293d;
+    padding: 1rem 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: #6B26F2;
+}
+
+/* Footer */
+.footer {
+    background: #29293d;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.footer p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin: 0;
+        box-shadow: none;
+    }
+
+    .header {
+        padding: 1.5rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .content {
+        padding: 1.5rem;
+    }
+
+    .nav {
+        padding: 1rem;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    pre, .json, .bash {
+        font-size: 0.8em;
+    }
+}
+
+/* Print styles */
+@media print {
+    .nav {
+        display: none;
+    }
+
+    .container {
+        box-shadow: none;
+    }
+
+    .header {
+        background: white !important;
+        color: black !important;
+    }
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .nav ul {
+    display: none;
+    flex-direction: column;
+    padding-left: 0;
+    margin: 0;
+    background-color: #29293d; /* or your nav background */
+    position: absolute;
+    top: 60px; /* adjust based on header height */
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .nav ul.show {
+    display: flex;
+  }
+
+  .nav li {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #444;
+  }
+
+  .nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Show toggle button */
+  .nav-toggle {
+    display: block;
+    color: white;
+  }
+
+  /* Make nav relative for absolute ul */
+  .nav {
+    position: relative;
+  }
+}</style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Reimbursement Service</h1>
+            <b>Partner Integration Manual</b>
+        </header>
+
+        <nav class="nav">
+            <button class="nav-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#operation-modes">Operation Modes</a></li>
+                <li><a href="#authentication">Authentication</a></li>
+                <li><a href="#api-endpoints">API Endpoints</a></li>
+                <li><a href="#error-handling">Error Handling</a></li>
+                <li><a href="#webhook-reports">Webhooks</a></li>
+                <li><a href="#best-practices">Best Practices</a></li>
+                <li><a href="#frequently-asked-questions">Q & A</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <h1 id="reimbursement-service---partner-integration-manual">Reimbursement Service - Partner Integration Manual</h1>
+<h2 id="overview">Overview</h2>
+<p>The Reimbursement Service API enables third-party reimbursement providers to integrate directly with our Electric Vehicle Supply Equipment (EVSE) management platform. This facilitates efficient and accurate reimbursement for EV charging by providing detailed charging session data in a standardized format.</p>
+<h3 id="typical-integration-flow">Typical Integration Flow:</h3>
+<ol>
+<li><strong>Charge Point Registration</strong>: Reimbursement providers register the charge points they want to monitor using this API.</li>
+<li><strong>Data Collection</strong>: The system collects charging session data from registered charge points, filtered by your specified dates.</li>
+<li><strong>Report Generation</strong>: Based on your configuration (report frequency and data intervals), the system generates and delivers detailed session reports via webhook.</li>
+</ol>
+<blockquote>
+  <p>Reports contain all data occurred since the last report for each registered charge point.</p>
+</blockquote>
+<hr />
+<h1 id="operation-modes">Operation Modes</h1>
+<p>Reimbursement Service supports two operation modes for managing charge points. You must choose one mode during integration setup:</p>
+<h2 id="1-pooling-mode-pull-model">1. Pooling Mode (Pull Model)</h2>
+<p>In this mode, Reimbursement Service periodically queries your system to retrieve the complete list of registered charge points.</p>
+<h3 id="how-it-works">How it works:</h3>
+<ul>
+<li>Reimbursement Service calls your endpoint at regular intervals</li>
+<li>Your system returns the list of all currently registered charge points</li>
+<li>Any charge point not present in the list is automatically considered unregistered</li>
+<li>No need to explicitly delete charge points, simply omit them from the list</li>
+</ul>
+<h3 id="api-request-from-reimbursement-service">API Request from Reimbursement Service:</h3>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>GET https://your-api-endpoint.com/charge-points
+Authorization: Bearer YOUR_PROVIDED_TOKEN
+</code></pre>
+<p><strong>Note:</strong> Any charge point ID not included in this list will be unregistered</p>
+<h3 id="expected-response">Expected Response:</h3>
+<p>Your endpoint must return a JSON response with the following schema:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "data": [
+    {
+      "externalId": "chargePoint-1",
+      "creationTimestamp": "2021-03-04T12:17:30.000000Z"
+    },
+    {
+      "externalId": "chargePoint-2",
+      "creationTimestamp": "2021-09-21T15:06:16.000000Z"
+    }
+  ]
+}
+</code></pre>
+<h3 id="response-fields">Response Fields:</h3>
+<ul>
+<li><strong>data:</strong> Array of charge point objects
+Return an empty data array if no charge points are registered</li>
+<li><strong>externalId:</strong> Unique identifier of the charge point (serial number)</li>
+<li><strong>creationTimestamp:</strong> ISO 8601 timestamp when the charge point was created and sets the cutoff date for charging sessions.</li>
+<li>When provided: Only charging sessions occurring after this date will be included in reports</li>
+<li>When NOT provided: All available historical sessions will be reported</li>
+</ul>
+<h3 id="requirements">Requirements:</h3>
+<ul>
+<li>Set appropriate creationTimestamp values to control which charging sessions are reported</li>
+<li>Provide OAuth 2.0 credentials for Reimbursement Service to authenticate</li>
+</ul>
+<h2 id="2-pushing-mode-push-model">2. Pushing Mode (Push Model)</h2>
+<p>In this mode, you actively manage charge points by calling our API to add or remove them.</p>
+<h3 id="how-it-works-1">How it works:</h3>
+<ul>
+<li>Use <code class="inline">POST /charge-points</code> to register new charge points</li>
+<li>Use <code class="inline">DELETE /charge-points/{serialNumber}</code> to unregister charge points</li>
+<li>Use <code class="inline">GET /charge-points</code> to verify your registered charge points</li>
+<li>You maintain full control over when changes occur</li>
+</ul>
+<h3 id="requirements-1">Requirements:</h3>
+<ul>
+<li>Implement logic to call our API when charge points need to be added/removed</li>
+<li>Maintain state to track which charge points are registered</li>
+<li>Handle API responses and potential errors</li>
+</ul>
+<hr />
+<h2 id="authentication">Authentication</h2>
+<p>All API requests must be authenticated using <strong>OAuth 2.0 Client Credentials</strong> via <strong>Auth0</strong>.</p>
+<ul>
+<li><strong>Endpoint</strong>: <code class="inline">https://powerverse-staging.uk.auth0.com/oauth/token</code></li>
+<li><strong>Method</strong>: <code class="inline">POST</code></li>
+<li><strong>Headers</strong>:</li>
+<li><code class="inline">Content-Type: application/json</code></li>
+</ul>
+<p><strong>Body</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "client_id": "YOUR_CLIENT_ID",
+  "client_secret": "YOUR_CLIENT_SECRET",
+  "grant_type": "client_credentials"
+}
+</code></pre>
+<p><strong>Example <code class="inline">curl</code></strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="bash language-bash">curl -X POST https://powerverse-staging.uk.auth0.com/oauth/token \
+  -H "Content-Type: application/json" \
+  -d '{"client_id": "YOUR_CLIENT_ID", "client_secret": "YOUR_CLIENT_SECRET", "grant_type": "client_credentials"}'
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "access_token": "eyJhbGciOiJSUzI1NiIs...",
+  "token_type": "Bearer",
+  "expires_in": 86400
+}
+</code></pre>
+<h3 id="use-the-token">Use the Token</h3>
+<p>All further requests must include the header:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>Authorization: Bearer YOUR_ACCESS_TOKEN
+</code></pre>
+<hr />
+<h2 id="api-base-urls">API Base URLs</h2>
+<ul>
+<li><strong>Staging</strong>: <code class="inline">https://staging-microservices.powerverse.com/reimbursements</code></li>
+</ul>
+<hr />
+<h2 id="api-endpoints">API Endpoints</h2>
+<h3 id="1-charge-points-management">1. Charge Points Management</h3>
+<h4 id="list-registered-charge-points">List Registered Charge Points</h4>
+<p><strong>GET</strong> <code class="inline">/v1/charge-points</code></p>
+<p>Optional query parameters: <code class="inline">page</code>, <code class="inline">perPage</code></p>
+<p><strong>Example</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="bash language-bash">curl -X GET "https://staging-microservices.powerverse.com/reimbursements/v1/charge-points" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "result": [
+    {
+      "serialNumber": "MNS000002",
+      "creationTimestamp": "2025-04-14T00:00:00"
+    }
+  ],
+  "pagination": { ... }
+}
+</code></pre>
+<h4 id="register-a-new-charge-point">Register a New Charge Point</h4>
+<p><strong>POST</strong> <code class="inline">/v1/charge-points</code></p>
+<p><strong>Body</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "serialNumber": "MNS000002",
+  "creationTimestamp": "2025-04-14T00:00:00Z"
+}
+</code></pre>
+<p><strong>Response</strong>: Status <code class="inline">204 No Content</code></p>
+<h4 id="unregister-a-charge-point">Unregister a Charge Point</h4>
+<p><strong>DELETE</strong> <code class="inline">/v1/charge-points/{serialNumber}</code></p>
+<p><strong>Response</strong>: Status <code class="inline">204 No Content</code></p>
+<hr />
+<h3 id="2-configuration-management">2. Configuration Management</h3>
+<h4 id="get-current-configuration">Get Current Configuration</h4>
+<p><strong>GET</strong> <code class="inline">/v1/config</code></p>
+<p><strong>Response</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "result": {
+    "meterDataInterval": 15,
+    "reportFrequency": "monthly",
+    "callbackUrl": "https://webhook.site-test.com"
+  }
+}
+</code></pre>
+<h4 id="update-configuration">Update Configuration</h4>
+<p><strong>PATCH</strong> <code class="inline">/v1/config</code></p>
+<p><strong>Body</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "meterDataInterval": 30,
+  "reportFrequency": "weekly",
+  "callbackUrl": "https://your-webhook-url.com/reports"
+}
+</code></pre>
+<p><strong>Response</strong>: Status <code class="inline">204 No Content</code></p>
+<h2 id="error-handling">Error Handling</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><code class="inline">bad_request</code></td>
+<td>Bad request / Validation error</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code class="inline">unauthorized</code></td>
+<td>Authentication error</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code class="inline">not_found</code></td>
+<td>Charge point not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td><code class="inline">internal_server_error</code></td>
+<td>Internal server error</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example error</strong>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "type": "unauthorized",
+  "description": "Authentication Error"
+}
+</code></pre>
+<hr />
+<h2 id="webhook-reports">Webhook Reports</h2>
+<p>When a <code class="inline">callbackUrl</code> is configured, the system automatically sends reports based on <code class="inline">reportFrequency</code>. Reports include all sessions since the last report, organized per charge point.</p>
+<h3 id="example-report-structure">Example Report Structure</h3>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code class="json language-json">{
+  "chargers": [
+    {
+      "chargeExternalId": "123456",
+      "chargePointExternalId": "chargePoint-1",
+      "intervals": [
+        {
+          "from": "2025-03-07T17:17:02.000Z",
+          "to": "2025-03-07T17:30:00.000Z",
+          "consumption": 0.772
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<h2 id="report-structure">Report Structure</h2>
+<h3 id="understanding-intervals">Understanding Intervals</h3>
+<p>Energy consumption data is provided in time-based intervals according to your configured <code class="inline">meterDataInterval</code> setting:</p>
+<ul>
+<li><strong>15 minutes</strong>: Most granular option, suitable for detailed analysis</li>
+<li><strong>30 minutes</strong>: Balanced option, commonly used in the industry</li>
+<li><strong>60 minutes</strong>: Hourly aggregation for simpler processing</li>
+</ul>
+<h3 id="data-aggregation">Data Aggregation</h3>
+<p>Our system automatically aggregates raw charging data into your configured interval size.</p>
+<p>For example, if a charging session lasted 45 minutes with 30-minute intervals configured:</p>
+<ul>
+<li><strong>Interval 1</strong>: 0–30 minutes with corresponding consumption</li>
+<li><strong>Interval 2</strong>: 30–45 minutes with corresponding consumption</li>
+</ul>
+<h3 id="consumption-units">Consumption Units</h3>
+<p>All energy consumption values are provided in <strong>kilowatt-hours (kWh)</strong>.</p>
+<h3 id="session-span">Session Span</h3>
+<p>Each session starts at the time of plug-in and finishes on unplug.
+Interval consumption will be <strong>0</strong> for the periods of no consumption.</p>
+<h3 id="notes">Notes:</h3>
+<ul>
+<li>Partial sessions at report cut-off are included and completed in following reports.</li>
+<li><code class="inline">externalId</code> and <code class="inline">serialNumber</code> are equivalent identifiers for charge points.</li>
+</ul>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<ul>
+<li><strong>Token Management</strong>: Tokens expire after 24hrs. Cache and reuse until expiry.</li>
+<li><strong>Error Handling</strong>: Always check for status codes and error details.</li>
+<li><strong>Validation</strong>: Validate data locally before sending.</li>
+<li><strong>Logging</strong>: Log all interactions, but do not log credentials/tokens.</li>
+<li><strong>Security</strong>: Keep client secrets/access tokens confidential.</li>
+</ul>
+<hr />
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Can I switch between pooling and pushing modes after initial setup?</strong>
+<strong>A:</strong> No. Switching operation modes requires coordination with our support team to ensure a smooth transition and avoid data loss. Contact support before making such changes.</p>
+<p><strong>Q: In pooling mode, how often does Reimbursement Service query our endpoint?</strong>
+<strong>A:</strong> The pooling frequency is internally managed and can vary depending on infrastructure requirements. It normally oscillates around 30 minutes.</p>
+<p><strong>Q: What happens if a charge point is accidentally omitted from the pooling response?</strong>
+<strong>A:</strong> Any omitted charge point is considered unregistered.</p>
+<p><strong>Q: How often are reports generated?</strong>
+<strong>A:</strong> Reports are generated according to your configured <code class="inline">reportFrequency</code> setting:</p>
+<ul>
+<li><strong>Twice-daily</strong>: Reports sent at 00:00 and 12:00 UTC</li>
+<li><strong>Daily</strong>: Reports sent at 00:00 UTC</li>
+<li><strong>Weekly</strong>: Reports sent every Monday at 00:00 UTC</li>
+<li><strong>Bi-weekly</strong>: Reports sent every second Monday at 00:00 UTC</li>
+<li><strong>Monthly</strong>: Reports sent on the 1st day of each month at 00:00 UTC</li>
+</ul>
+<p><strong>Q: What happens if my webhook endpoint is unavailable?</strong>
+<strong>A:</strong> The system will retry failed webhook deliveries with exponential backoff. If all retries fail, you'll need to contact support for manual report retrieval.</p>
+<p><strong>Q: Can I change the interval size after registration?</strong>
+<strong>A:</strong> Yes, you can update your <code class="inline">meterDataInterval</code> setting at any time using the <code class="inline">/config</code> endpoint. Future reports will use the new interval size.</p>
+<p><strong>Q: What timezone is used for timestamps?</strong>
+<strong>A:</strong> All timestamps are provided in <strong>UTC (Coordinated Universal Time)</strong> using <strong>ISO 8601</strong> format.</p>
+<p><strong>Q: Can I register the same charge point multiple times?</strong>
+<strong>A:</strong> No, each charge point serial number can only be registered once per account. Attempting to register an already-registered charge point will result in an error.</p>
+<p><strong>Q: How do I handle partial charging sessions?</strong>
+<strong>A:</strong> Charging sessions that span multiple reporting periods are not split across reports. Only completed sessions are included in reports.
+For example, if a session runs from 23:00 to 04:00 and a daily report is generated at 00:00, that session will not be included in the midnight report — it will only appear in the next day's report once the session is completed at 04:00.</p>
+<p><strong>Q: Is there a limit to how many charge points I can register?</strong>
+<strong>A:</strong> There's no hard limit, but we recommend paginating your requests when listing charge points if you have more than 100 registered.</p>
+<hr />
+<h2 id="version-history">Version History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2025-07-31</td>
+<td>Initial version</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="support">Support</h2>
+<p>For technical support or integration questions, contact:</p>
+<p>📧 Email: <a href="mailto:api-support@powerverse.com">TBD</a></p>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Powerverse Connect Ltd. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const text = codeBlock.textContent;
+
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
